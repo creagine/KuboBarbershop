@@ -11,17 +11,23 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.creaginetech.kubobarbershop.model.Admin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText inputEmail;
-    private EditText inputPassword;     //hit option + enter if you on mac , for windows hit ctrl + enter
+    private EditText inputPassword;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private DatabaseReference adminReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +35,16 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         //Get Firebase auth instance
+        mAuth = FirebaseAuth.getInstance();
+
+        // get reference to 'order'
+        adminReference = FirebaseDatabase.getInstance().getReference("Admins");
 
         Button btnSignIn = findViewById( R.id.sign_in_button );
         Button btnSignUp = findViewById( R.id.sign_up_button );
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
-        //Button btnResetPassword = findViewById( R.id.btn_reset_password );
-        mAuth = FirebaseAuth.getInstance();
 
         /**
          btnResetPassword.setOnClickListener( new View.OnClickListener() {
@@ -57,8 +65,8 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                final String email = inputEmail.getText().toString().trim();
+                final String password = inputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -90,6 +98,9 @@ public class SignUpActivity extends AppCompatActivity {
                                     Toast.makeText(SignUpActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+
+                                    pushToDatabase(email, password);
+
                                     startActivity(new Intent(SignUpActivity.this, SetupBarbershopActivity.class));
                                     finish();
                                 }
@@ -98,6 +109,18 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void pushToDatabase(String email, String password){
+
+        //get current user
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
+        String role = "admin";
+
+        Admin newAdmin = new Admin(email, password, role);
+        adminReference.child(userId).setValue(newAdmin);
+
     }
 
     @Override

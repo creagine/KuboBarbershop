@@ -2,15 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.creaginetech.kubobarbershop">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/fixfixfix"
         android:label="Kubo - Barbershop Partner"
         android:roundIcon="@drawable/fixfixfix"
+        android:screenOrientation="sensorPortrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:screenOrientation="sensorPortrait">
-        <activity android:name=".LoginActivity"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,32 +21,47 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignUpActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ResetPasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Profile_Fitur"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SetupBarbershopActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".OrderDetailActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".JadwalListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".BarbermanListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ServiceListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddJadwalActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddBarbermanActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddServiceActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".OrderHistoryActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Profile_Fitur"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SetupBarbershopActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".JadwalListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BarbermanListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ServiceListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddJadwalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddBarbermanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OrderHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".BarbermanDetailActivity" />
+        <activity android:name=".ServiceDetailActivity"></activity>
     </application>
 
 </manifest>

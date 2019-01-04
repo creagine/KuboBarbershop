@@ -39,7 +39,7 @@ public class AddServiceActivity extends AppCompatActivity {
 
         edtServiceName = findViewById(R.id.editTextServiceName);
         edtServicePrice = findViewById(R.id.editTextServicePrice);
-        btnSave = findViewById(R.id.buttonNext);
+        btnSave = findViewById(R.id.buttonFinishService);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

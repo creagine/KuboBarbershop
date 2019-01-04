@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
 import com.creaginetech.kubobarbershop.R;
-import com.creaginetech.kubobarbershop.fragment.OrderFragment;
 
 public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -28,7 +27,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder implements View.OnC
         price = itemView.findViewById(R.id.textViewPrice);
         status = itemView.findViewById(R.id.textViewStatus);
         btnApprove = itemView.findViewById(R.id.buttonApprove);
-        btnCancel = itemView.findViewById(R.id.buttonCancel);
+        btnCancel = itemView.findViewById(R.id.buttonFinishService);
         viewForeground = itemView.findViewById(R.id.viewForeground);
 
 //        btnApprove.setOnClickListener(new View.OnClickListener() {

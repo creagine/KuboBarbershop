@@ -89,7 +89,12 @@ public class BarbermanListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        Intent barbermanList = new Intent(BarbermanListActivity.this, BarbermanDetailActivity.class);
 
+                        //When user select shop, we will save shop id to select service of this shop
+                        Common.barbermanSelected = adapter.getRef(position).getKey();
+
+                        startActivity(barbermanList);
 
                     }
                 });
@@ -121,6 +126,12 @@ public class BarbermanListActivity extends AppCompatActivity {
         //show item in service list when click back from service detail
         if (adapter != null)
             adapter.startListening();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }

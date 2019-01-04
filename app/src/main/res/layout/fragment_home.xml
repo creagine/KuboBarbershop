@@ -53,14 +53,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewProfileName" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textViewProfilePhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Barbershop Phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfileAddress" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfileAddress">
+        app:layout_constraintTop_toBottomOf="@+id/textViewProfilePhone">
 
         <Button
             android:id="@+id/buttonProfileBarberman"
@@ -69,7 +85,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Barberman"
-            android:textSize="12sp" />
+            android:textColor="@color/btn_login_bg"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorPrimary" />
 
         <Button
             android:id="@+id/buttonProfileService"
@@ -78,14 +96,17 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:text="Service"
-            android:textSize="12sp" />
+            android:textColor="@color/btn_login_bg"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorPrimary" />
 
         <Button
             android:id="@+id/buttonProfileJadwal"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:text="Jadwal"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

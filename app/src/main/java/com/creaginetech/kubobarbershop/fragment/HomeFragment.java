@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference barbershopReference;
 
     ImageView imgBarbershop;
-    TextView nameBarbershop, alamatBarbershop;
+    TextView nameBarbershop, alamatBarbershop, phoneBarbershop;
     Button btnBarberman, btnJadwal, btnService;
 
     public HomeFragment() {
@@ -62,6 +62,7 @@ public class HomeFragment extends Fragment {
         imgBarbershop = view.findViewById(R.id.imageViewProfileImage);
         nameBarbershop = view.findViewById(R.id.textViewProfileName);
         alamatBarbershop = view.findViewById(R.id.textViewProfileAddress);
+        phoneBarbershop = view.findViewById(R.id.textViewProfilePhone);
         btnBarberman = view.findViewById(R.id.buttonProfileBarberman);
         btnJadwal = view.findViewById(R.id.buttonProfileJadwal);
         btnService = view.findViewById(R.id.buttonProfileService);
@@ -100,7 +101,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getBarbershop(String idBarbershop) {
-        barbershopReference.child(idBarbershop).addValueEventListener(new ValueEventListener() {
+        barbershopReference.child(idBarbershop).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -113,6 +114,7 @@ public class HomeFragment extends Fragment {
 
                     nameBarbershop.setText(currentBarbershop.getNama());
                     alamatBarbershop.setText(currentBarbershop.getAlamat());
+                    phoneBarbershop.setText(currentBarbershop.getPhone());
 
                 } else {
 

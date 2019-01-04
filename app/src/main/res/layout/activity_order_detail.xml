@@ -39,21 +39,50 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <Button
-        android:id="@+id/buttonCancel"
+        android:id="@+id/buttonFinishService"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:text="Cancel order"
         android:textColor="@color/btn_login_bg"
         app:backgroundTint="@color/btn_logut_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFinish"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonFinish" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/buttonCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Call"
+            android:textColor="@color/btn_login_bg"
+            app:backgroundTint="@color/bg_main" />
+
+        <Button
+            android:id="@+id/buttonWa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Whatsapp"
+            android:textColor="@color/btn_login_bg"
+            app:backgroundTint="@android:color/holo_green_dark" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -75,7 +104,8 @@
             android:layout_height="wrap_content"
             android:text="Atas nama"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="end" />
 
 
         <TextView
@@ -90,7 +120,8 @@
             android:layout_height="wrap_content"
             android:text="Barberman"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="end" />
 
         <View
             android:id="@+id/divider"
@@ -110,7 +141,8 @@
             android:layout_height="wrap_content"
             android:text="Service"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="end" />
 
 
         <TextView
@@ -125,7 +157,8 @@
             android:layout_height="wrap_content"
             android:text="Jadwal Booking nya"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="end" />
 
         <View
             android:id="@+id/divider1"
@@ -145,7 +178,8 @@
             android:layout_height="wrap_content"
             android:text="Total Biaya"
             android:textAlignment="textEnd"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="end" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

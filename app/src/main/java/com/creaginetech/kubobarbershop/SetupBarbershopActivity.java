@@ -37,7 +37,7 @@ public class SetupBarbershopActivity extends AppCompatActivity {
 
     FirebaseUser user;
 
-    EditText edtNamaBarbershop, edtAlamatBarbershop;
+    EditText edtNamaBarbershop, edtAlamatBarbershop, edtPhoneBarbershop;
     Button btnSave, btnSelectBarbershopImage;
     ImageView imgBarbershop;
 
@@ -64,7 +64,8 @@ public class SetupBarbershopActivity extends AppCompatActivity {
 
         edtNamaBarbershop = findViewById(R.id.editTextServiceName);
         edtAlamatBarbershop = findViewById(R.id.editTextAlamatBarbershop);
-        btnSave = findViewById(R.id.buttonNext);
+        edtPhoneBarbershop = findViewById(R.id.editTextPhone);
+        btnSave = findViewById(R.id.buttonFinishService);
         btnSelectBarbershopImage = findViewById(R.id.buttonSelectImage);
         imgBarbershop = findViewById(R.id.imageViewBarberman);
 
@@ -82,8 +83,8 @@ public class SetupBarbershopActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (edtAlamatBarbershop.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(), "Enter Barbershop address", Toast.LENGTH_SHORT).show();
+                if (edtPhoneBarbershop.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), "Enter Barbershop phone number", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -186,9 +187,11 @@ public class SetupBarbershopActivity extends AppCompatActivity {
 
         String namaBarbershop = edtNamaBarbershop.getText().toString().trim();
         String alamatBarbershop = edtAlamatBarbershop.getText().toString().trim();
+        String phoneBarbershop = edtPhoneBarbershop.getText().toString().trim();
         String idBarbershop = user.getUid();
 
-        Barbershop newBarbershop = new Barbershop(imgUri, namaBarbershop, alamatBarbershop);
+        Barbershop newBarbershop = new Barbershop(imgUri, namaBarbershop, alamatBarbershop,
+                phoneBarbershop);
         barbershopReference.child(idBarbershop).setValue(newBarbershop);
 
         Intent intent = new Intent(SetupBarbershopActivity.this, MainActivity.class);

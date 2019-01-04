@@ -39,7 +39,7 @@ public class AddJadwalActivity extends AppCompatActivity {
 
         edtJadwal = findViewById(R.id.editTextServiceName);
         edtShift = findViewById(R.id.editTextShift);
-        btnSave = findViewById(R.id.buttonNext);
+        btnSave = findViewById(R.id.buttonFinishService);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

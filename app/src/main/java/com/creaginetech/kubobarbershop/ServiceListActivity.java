@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.creaginetech.kubobarbershop.Common.Common;
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
 import com.creaginetech.kubobarbershop.model.Service;
 import com.creaginetech.kubobarbershop.viewholder.ServiceViewHolder;
@@ -86,6 +87,13 @@ public class ServiceListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
 
+                        Intent serviceList = new Intent(ServiceListActivity.this, ServiceDetailActivity.class);
+
+                        //When user select shop, we will save shop id to select service of this shop
+                        Common.serviceSelected = adapter.getRef(position).getKey();
+
+                        startActivity(serviceList);
+
                     }
                 });
             }
@@ -117,6 +125,12 @@ public class ServiceListActivity extends AppCompatActivity {
         //show item in service list when click back from service detail
         if (adapter != null)
             adapter.startListening();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
 }

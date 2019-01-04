@@ -7,6 +7,7 @@
     tools:context=".LoginActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"
@@ -23,9 +24,9 @@
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
             android:layout_marginBottom="0dp"
             android:contentDescription="@string/app_name"
+            android:paddingTop="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
             app:srcCompat="@drawable/fixfix"
@@ -39,7 +40,7 @@
             android:layout_below="@+id/imageView"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="0dp"
-            android:fontFamily="casual"
+            android:fontFamily="sans-serif"
             android:gravity="center"
             android:text="Kubo - Barbeshop Partner"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -54,8 +55,8 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="Potong Rambut Tanpa Ribet"
-            android:textSize="15dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textSize="15dp" />
 
         <EditText
             android:id="@+id/email"
@@ -74,8 +75,8 @@
             android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            app:passwordToggleEnabled="true">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/password"
@@ -84,7 +85,7 @@
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:textColor="@color/input_login_hint"
-                android:textColorHint="@color/input_login_hint"/>
+                android:textColorHint="@color/input_login_hint" />
         </android.support.design.widget.TextInputLayout>
 
 
@@ -121,6 +122,7 @@
                 android:layout_width="156dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="20dip"
                 android:layout_marginEnd="0dp"
                 android:background="@null"
@@ -129,8 +131,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="15sp"
                 tools:ignore="RtlCompat,SpUsage"
-                tools:targetApi="ice_cream_sandwich"
-                android:layout_alignParentRight="true" />
+                tools:targetApi="ice_cream_sandwich" />
         </RelativeLayout>
         <!-- Link to Login Screen -->
 
@@ -141,8 +142,14 @@
         android:layout_width="32dp"
         android:layout_height="29dp"
         android:layout_gravity="center|bottom"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:visibility="gone"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="142dp"
-        tools:layout_editor_absoluteY="162dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 </android.support.constraint.ConstraintLayout>

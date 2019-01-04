@@ -64,7 +64,7 @@ public class AddBarbermanActivity extends AppCompatActivity {
         barbermanReference = FirebaseDatabase.getInstance().getReference("Barberman").child(userId);
 
         edtNamaBarberman = findViewById(R.id.editTextServiceName);
-        btnSave = findViewById(R.id.buttonNext);
+        btnSave = findViewById(R.id.buttonFinishService);
         btnSelectBarbermanImage = findViewById(R.id.buttonSelectImage);
         imgBarberman = findViewById(R.id.imageViewBarberman);
 

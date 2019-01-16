@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.creaginetech.kubobarbershop.Common.Common;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -47,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         //Get Firebase uth instance
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
+            Common.currentUser = mAuth.getCurrentUser().getUid();
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
@@ -129,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
         //get current user
         user = FirebaseAuth.getInstance().getCurrentUser();
         String userId = user.getUid();
+        Common.currentUser = mAuth.getCurrentUser().getUid();
 
         adminReference.child(userId).addValueEventListener(new ValueEventListener() {
             @Override

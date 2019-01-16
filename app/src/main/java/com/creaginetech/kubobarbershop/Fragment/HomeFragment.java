@@ -1,4 +1,4 @@
-package com.creaginetech.kubobarbershop.fragment;
+package com.creaginetech.kubobarbershop.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +12,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creaginetech.kubobarbershop.BarbermanListActivity;
+import com.creaginetech.kubobarbershop.Common.Common;
 import com.creaginetech.kubobarbershop.JadwalListActivity;
+import com.creaginetech.kubobarbershop.Model.Token;
 import com.creaginetech.kubobarbershop.R;
 import com.creaginetech.kubobarbershop.ServiceListActivity;
 import com.creaginetech.kubobarbershop.SetupBarbershopActivity;
-import com.creaginetech.kubobarbershop.model.Barbershop;
+import com.creaginetech.kubobarbershop.Model.Barbershop;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -55,9 +59,14 @@ public class HomeFragment extends Fragment {
         //get current user
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+
         //get barbershopId from uid current user
         String barbershopId = user.getUid();
         getBarbershop(barbershopId);
+
+        //to add your token when login app
+        updateToken(FirebaseInstanceId.getInstance().getToken());
 
         imgBarbershop = view.findViewById(R.id.imageViewProfileImage);
         nameBarbershop = view.findViewById(R.id.textViewProfileName);
@@ -134,6 +143,13 @@ public class HomeFragment extends Fragment {
 
             }
         });
+    }
+
+    private void updateToken(String token) {
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference tokens = db.getReference("Tokens");
+        Token data = new Token(token,true); //true because this token from server app
+        tokens.child(Common.currentUser).setValue(data);
     }
 
 }

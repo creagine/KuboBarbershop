@@ -14,8 +14,8 @@ import android.widget.Button;
 
 import com.creaginetech.kubobarbershop.Common.Common;
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
-import com.creaginetech.kubobarbershop.model.Service;
-import com.creaginetech.kubobarbershop.viewholder.ServiceViewHolder;
+import com.creaginetech.kubobarbershop.Model.Service;
+import com.creaginetech.kubobarbershop.Viewholder.ServiceViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

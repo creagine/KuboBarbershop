@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creaginetech.kubobarbershop.Common.Common;
-import com.creaginetech.kubobarbershop.model.Barberman;
+import com.creaginetech.kubobarbershop.Model.Barberman;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

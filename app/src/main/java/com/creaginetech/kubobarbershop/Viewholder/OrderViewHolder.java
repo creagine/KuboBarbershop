@@ -1,4 +1,4 @@
-package com.creaginetech.kubobarbershop.viewholder;
+package com.creaginetech.kubobarbershop.Viewholder;
 
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;

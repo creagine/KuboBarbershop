@@ -1,4 +1,4 @@
-package com.creaginetech.kubobarbershop.fragment;
+package com.creaginetech.kubobarbershop.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

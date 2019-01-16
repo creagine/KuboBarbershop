@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
-import com.creaginetech.kubobarbershop.model.Order;
-import com.creaginetech.kubobarbershop.viewholder.OrderViewHolder;
+import com.creaginetech.kubobarbershop.Model.Order;
+import com.creaginetech.kubobarbershop.Viewholder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,4 +1,4 @@
-package com.creaginetech.kubobarbershop.model;
+package com.creaginetech.kubobarbershop.Model;
 
 public class Admin {
 

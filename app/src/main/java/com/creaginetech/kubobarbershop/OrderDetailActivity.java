@@ -8,13 +8,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.creaginetech.kubobarbershop.Common.Common;
-import com.creaginetech.kubobarbershop.model.Order;
+import com.creaginetech.kubobarbershop.Model.Message;
+import com.creaginetech.kubobarbershop.Model.MyResponse;
+import com.creaginetech.kubobarbershop.Model.Notification;
+import com.creaginetech.kubobarbershop.Model.Order;
+import com.creaginetech.kubobarbershop.Model.Sender;
+import com.creaginetech.kubobarbershop.Model.Token;
+import com.creaginetech.kubobarbershop.Remote.APIService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +29,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
@@ -39,6 +50,8 @@ public class OrderDetailActivity extends AppCompatActivity {
 
     String idOrder, idUser, atasnama, totalharga, idBarbershop, jadwal, barberman, service,
             barbershop, status, phoneBarbershop, phoneUser;
+
+    APIService mService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +83,9 @@ public class OrderDetailActivity extends AppCompatActivity {
 
         getData(barbershopId);
 
+        //Init Service
+        mService = Common.getFCMService();
+
 
         btnApprove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +102,8 @@ public class OrderDetailActivity extends AppCompatActivity {
                         barberman, service, totalharga, jadwal, status, phoneBarbershop, phoneUser);
                 orderReference.child(idBarbershop).child(Common.orderSelected).setValue(approveOrder);
                 usersOrderReference.child(idUser).child(Common.orderSelected).setValue(approveOrder);
+
+                sendOrderStatusToUser(Common.orderSelected,approveOrder);
 
                 Intent intent = new Intent(OrderDetailActivity.this, MainActivity.class);
 
@@ -244,4 +262,49 @@ public class OrderDetailActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void sendOrderStatusToUser(final String key,final Order order) {
+
+        DatabaseReference tokens = mFirebaseInstance.getReference("Tokens");
+
+        tokens.orderByKey().equalTo(order.getIdUser())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot postSnapShot:dataSnapshot.getChildren())
+                        {
+                            Token token = postSnapShot.getValue(Token.class);
+
+                            //Make raw payload
+                            Notification notification = new Notification("Detail notif",order.getStatus());
+                            Sender content = new Sender(token.getToken(),notification);
+
+                            mService.sendNotification(content)
+                                    .enqueue(new Callback<MyResponse>() {
+                                        @Override
+                                        public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                                            if (response.code() == 200) {
+                                                if (response.body().success == 1) {
+                                                    Toast.makeText(OrderDetailActivity.this, "Order was updated !", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(OrderDetailActivity.this, "Order was updated but failed to send notification !", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<MyResponse> call, Throwable t) {
+                                            Log.e("ERROR",t.getMessage());
+                                        }
+                                    });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
 }

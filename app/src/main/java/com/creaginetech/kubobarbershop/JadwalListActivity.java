@@ -12,10 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.creaginetech.kubobarbershop.Common.Common;
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
-import com.creaginetech.kubobarbershop.model.Jadwal;
-import com.creaginetech.kubobarbershop.viewholder.JadwalViewHolder;
+import com.creaginetech.kubobarbershop.Model.Jadwal;
+import com.creaginetech.kubobarbershop.Viewholder.JadwalViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

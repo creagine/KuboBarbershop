@@ -1,4 +1,4 @@
-package com.creaginetech.kubobarbershop.fragment;
+package com.creaginetech.kubobarbershop.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +18,8 @@ import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
 import com.creaginetech.kubobarbershop.OrderDetailActivity;
 import com.creaginetech.kubobarbershop.OrderHistoryActivity;
 import com.creaginetech.kubobarbershop.R;
-import com.creaginetech.kubobarbershop.model.Order;
-import com.creaginetech.kubobarbershop.viewholder.OrderViewHolder;
+import com.creaginetech.kubobarbershop.Model.Order;
+import com.creaginetech.kubobarbershop.Viewholder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;

@@ -1,25 +1,26 @@
-package com.creaginetech.kubobarbershop.viewholder;
+package com.creaginetech.kubobarbershop.Viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
 import com.creaginetech.kubobarbershop.R;
 
-public abstract class ServiceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public abstract class BarbermanViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView serviceNama;
-    public TextView serviceHarga;
+    public TextView barbermanNama;
+    public ImageView barbermanImage;
 
     private ItemClickListener itemClickListener;
 
-    public ServiceViewHolder(View itemView) {
+    public BarbermanViewHolder(View itemView) {
         super(itemView);
 
         //edit sesuaikan service_item
-        serviceNama = itemView.findViewById(R.id.service_name);
-        serviceHarga = itemView.findViewById(R.id.service_harga);
+        barbermanNama = itemView.findViewById(R.id.barberman_name);
+        barbermanImage = itemView.findViewById(R.id.barberman_image);
 
         itemView.setOnClickListener(this);
     }

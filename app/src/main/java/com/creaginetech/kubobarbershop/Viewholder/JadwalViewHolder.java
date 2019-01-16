@@ -1,14 +1,11 @@
-package com.creaginetech.kubobarbershop.viewholder;
+package com.creaginetech.kubobarbershop.Viewholder;
 
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.creaginetech.kubobarbershop.Interface.ItemClickListener;
 import com.creaginetech.kubobarbershop.R;
-import com.creaginetech.kubobarbershop.fragment.OrderFragment;
 
 public abstract class JadwalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

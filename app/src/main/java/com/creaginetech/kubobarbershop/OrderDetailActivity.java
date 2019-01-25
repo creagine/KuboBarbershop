@@ -130,16 +130,18 @@ public class OrderDetailActivity extends AppCompatActivity {
 
                 status = "Order Finished";
 
-                Order approveOrder = new Order(idOrder, idUser, atasnama, idBarbershop, barbershop,
+                Order finishOrder = new Order(idOrder, idUser, atasnama, idBarbershop, barbershop,
                         barberman, service, totalharga, jadwal, status, phoneBarbershop, phoneUser);
 
                 //data diisi ke order history (seperti seakan2 dipindah)
-                orderHistoryReference.child(idBarbershop).child(Common.orderSelected).setValue(approveOrder);
-                usersOrderHistoryReference.child(idUser).child(Common.orderSelected).setValue(approveOrder);
+                orderHistoryReference.child(idBarbershop).child(Common.orderSelected).setValue(finishOrder);
+                usersOrderHistoryReference.child(idUser).child(Common.orderSelected).setValue(finishOrder);
 
                 //hapus data yang di kolom order (karna sdh dipindah ke history)
                 orderReference.child(idBarbershop).child(Common.orderSelected).removeValue();
                 usersOrderReference.child(idUser).child(Common.orderSelected).removeValue();
+
+                sendOrderStatusToUser(Common.orderSelected,finishOrder);
 
                 Intent intent = new Intent(OrderDetailActivity.this, MainActivity.class);
 
@@ -161,16 +163,29 @@ public class OrderDetailActivity extends AppCompatActivity {
                 orderReference = mFirebaseInstance.getReference("Order");
                 // get reference to 'usersorder'
                 usersOrderReference = mFirebaseInstance.getReference("UsersOrder");
+                // get reference to 'orderhistory'
+                orderHistoryReference = mFirebaseInstance.getReference("OrderHistory");
+                // get reference to 'usersorderhistory'
+                usersOrderHistoryReference = mFirebaseInstance.getReference("UsersOrderHistory");
+
+                status = "Order Cancelled";
+
+                Order cancelOrder = new Order(idOrder, idUser, atasnama, idBarbershop, barbershop,
+                        barberman, service, totalharga, jadwal, status, phoneBarbershop, phoneUser);
+
+                //data diisi ke order history (seperti seakan2 dipindah)
+                orderHistoryReference.child(idBarbershop).child(Common.orderSelected).setValue(cancelOrder);
+                usersOrderHistoryReference.child(idUser).child(Common.orderSelected).setValue(cancelOrder);
 
                 orderReference.child(idBarbershop).child(Common.orderSelected).removeValue();
                 usersOrderReference.child(idUser).child(Common.orderSelected).removeValue();
 
-
+                sendOrderStatusToUser(Common.orderSelected,cancelOrder);
 
                 Intent intent = new Intent(OrderDetailActivity.this, MainActivity.class);
 
                 Toast.makeText(OrderDetailActivity.this,
-                        "Order cancelled",
+                        "Order cancelled, moved to order history",
                         Toast.LENGTH_LONG).show();
 
                 startActivity(intent);
@@ -276,7 +291,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                             Token token = postSnapShot.getValue(Token.class);
 
                             //Make raw payload
-                            Notification notification = new Notification("Detail notif",order.getStatus());
+                            Notification notification = new Notification("Click here to check",order.getStatus());
                             Sender content = new Sender(token.getToken(),notification);
 
                             mService.sendNotification(content)
